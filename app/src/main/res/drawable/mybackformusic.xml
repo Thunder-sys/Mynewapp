@@ -1,0 +1,20 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Background layer 1: Gradient with red and orange colors -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:startColor="#2C2727"
+                android:endColor="#DAD6D0"
+                android:type="linear"
+                android:angle="90" />
+
+        </shape>
+
+    </item>
+
+    <!-- Background layer 2: Gradient with green and blue colors -->
+
+
+
+</layer-list>

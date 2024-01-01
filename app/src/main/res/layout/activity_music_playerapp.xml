@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/mybackformusic"
+    android:orientation="vertical"
+    tools:context=".Musicplayerfile.MusicPlayerapp">
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="MUSIC APP"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="50dp"
+        android:layout_marginTop="20dp"
+
+        />
+    <ImageView
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:background="@drawable/musicaapli1"
+        android:layout_gravity="center"
+        android:layout_marginTop="70dp"
+        >
+
+    </ImageView>
+    <TextView
+        android:id="@+id/musictitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       android:text="Music Title"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:textAllCaps="true"
+        android:textSize="30dp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+
+        >
+
+    </TextView>
+
+    <LinearLayout
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:layout_marginLeft="35dp"
+        android:layout_gravity="center"
+        android:layout_marginRight="35dp"
+
+
+        >
+       <Button
+           android:id="@+id/backforward"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_weight="1"
+           android:layout_margin="7dp"
+           android:background="@drawable/backforwar"
+           >
+
+       </Button>
+        <Button
+            android:id="@+id/play"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="7dp"
+            android:background="@drawable/playbutton"
+            >
+
+        </Button>
+
+
+
+        <Button
+            android:id="@+id/fastforward"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="7dp"
+            android:background="@drawable/fastforward"
+            >
+
+        </Button>
+
+
+
+    </LinearLayout>
+    <SeekBar
+        android:id="@+id/seekbarr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+
+        >
+
+    </SeekBar>
+    <TextView
+        android:id="@+id/timeing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:text="00:00"
+
+        android:textColor="@color/white"
+        android:textSize="30dp"
+        android:textStyle="bold"
+
+        >
+
+    </TextView>
+</LinearLayout>
