@@ -15,6 +15,12 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:targetApi="31">
         <activity
+            android:name=".Listwithetxtimg.Listimgwtxt"
+            android:exported="false" />
+        <activity
+            android:name=".ListofText.Textlist"
+            android:exported="false" />
+        <activity
             android:name=".ListViews.ListItem"
             android:exported="false" />
         <activity
