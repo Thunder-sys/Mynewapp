@@ -23,7 +23,6 @@ class Dashboard : AppCompatActivity() {
 
             var myappnam="CALCULATOR"
             var mystatus="Complete"
-
             var intent=Intent(this,StatusActi::class.java)
 
             intent.putExtra("mycalcuname",myappnam)
