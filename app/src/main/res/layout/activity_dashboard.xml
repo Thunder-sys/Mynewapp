@@ -11,7 +11,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#02786A"
+        android:background="#00897B"
         android:orientation="vertical">
 
         <TextView
@@ -134,7 +134,7 @@
                 android:layout_weight="1"
 
                 android:layout_margin="10dp"
-                android:background="@drawable/luckyapp"
+                android:background="@drawable/album"
                 />
 
             <ImageButton
@@ -142,7 +142,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/musicaapli"
+                android:background="@drawable/onlineimage"
                 android:layout_margin="10dp"
                 />
 
@@ -173,7 +173,7 @@
                 android:layout_weight="1"
                 android:textStyle="bold"
                 android:gravity="center"
-                android:text="Lucky App" />
+                android:text="Music album" />
 
             <TextView
                 android:id="@+id/unknwl"
@@ -182,9 +182,18 @@
                 android:layout_weight="1"
                 android:textStyle="bold"
                 android:gravity="center"
-                android:text="Music App" />
+                android:text="search image" />
+
+
         </LinearLayout>
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="301dp"
+        android:layout_marginTop="100dp"
+        android:background="#00897B"
+        android:orientation="horizontal"/>
 
-</LinearLayout>
+
+    </LinearLayout>

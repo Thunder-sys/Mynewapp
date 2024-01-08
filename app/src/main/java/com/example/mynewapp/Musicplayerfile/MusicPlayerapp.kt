@@ -28,6 +28,8 @@ class MusicPlayerapp : AppCompatActivity() {
     var mediaPlayer=MediaPlayer()
     lateinit private var mytime:TextView
     lateinit private var seekbar: SeekBar
+    lateinit private var previous:Button
+    lateinit private var Next:Button
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,6 +39,8 @@ class MusicPlayerapp : AppCompatActivity() {
         var mytitle=findViewById<TextView>(R.id.musictitle)
         mytime=findViewById(R.id.timeing)
         seekbar=findViewById(R.id.seekbarr)
+        previous=findViewById(R.id.music_previous)
+        Next=findViewById(R.id.music_Next)
 
         // Button Declare
         var backforw=findViewById<Button>(R.id.backforward)
@@ -47,32 +51,65 @@ class MusicPlayerapp : AppCompatActivity() {
 
         // Inintialze Media Player
 
-         mediaPlayer=MediaPlayer.create(this,R.raw.arjanvally)
+
 
         seekbar.isClickable = false
 
-        playbut.setOnClickListener() {
-            if (mediaPlayer.isPlaying) {
-                mediaPlayer.pause()
-                playbut.setBackgroundResource(R.drawable.playbutton)
-            } else {
-                mediaPlayer.start()
-                playbut.setBackgroundResource(R.drawable.pause)
 
-                finaltime = mediaPlayer.duration.toDouble()
-                starttime = mediaPlayer.currentPosition.toDouble()
+        previous.setOnClickListener(){
+            mediaPlayer=MediaPlayer.create(this,R.raw.arjanvally)
 
-                if (oneTimeOnly == 0) {
-                    // check for Music Run at only first Time
-                    seekbar.max = finaltime.toInt()
-                    oneTimeOnly = 1
+            playbut.setOnClickListener() {
+                if (mediaPlayer.isPlaying) {
+                    mediaPlayer.pause()
+                    playbut.setBackgroundResource(R.drawable.playbutton)
+                } else {
+                    mediaPlayer.start()
+                    playbut.setBackgroundResource(R.drawable.pause)
 
+                    finaltime = mediaPlayer.duration.toDouble()
+                    starttime = mediaPlayer.currentPosition.toDouble()
+
+                    if (oneTimeOnly == 0) {
+                        // check for Music Run at only first Time
+                        seekbar.max = finaltime.toInt()
+                        oneTimeOnly = 1
+
+                    }
+
+                    mytime.setText("" + starttime)
+                    seekbar.setProgress(starttime.toInt())
+
+                    handler.postDelayed(UpdateSongTime, 100)
                 }
+            }
+        }
+        Next.setOnClickListener(){
+            mediaPlayer=MediaPlayer.create(this,R.raw.jaishreeram)
 
-                mytime.setText("" + starttime)
-                seekbar.setProgress(starttime.toInt())
+            playbut.setOnClickListener() {
+                if (mediaPlayer.isPlaying) {
+                    mediaPlayer.pause()
+                    playbut.setBackgroundResource(R.drawable.playbutton)
+                } else {
+                    mediaPlayer.start()
+                    playbut.setBackgroundResource(R.drawable.pause)
 
-                handler.postDelayed(UpdateSongTime, 100)
+                    finaltime = mediaPlayer.duration.toDouble()
+                    starttime = mediaPlayer.currentPosition.toDouble()
+
+                    if (oneTimeOnly == 0) {
+                        // check for Music Run at only first Time
+                        seekbar.max = finaltime.toInt()
+                        oneTimeOnly = 1
+
+                    }
+
+                    mytime.setText("" + starttime)
+                    seekbar.setProgress(starttime.toInt())
+
+                    handler.postDelayed(UpdateSongTime, 100)
+                }
             }
         }
         //For Give Title of Song
@@ -80,12 +117,11 @@ class MusicPlayerapp : AppCompatActivity() {
 
 
         //For Stop the song
-
-
         fastforv.setOnClickListener(){
-            var temp=starttime
-            if ((temp+forwardtime)<=finaltime){
+            starttime=mediaPlayer.currentPosition.toDouble()
+            if (starttime>=0){
                 starttime=starttime+forwardtime
+                seekbar.setProgress(starttime.toInt())
                 mediaPlayer.seekTo(starttime.toInt())
             }
             else{
@@ -93,13 +129,11 @@ class MusicPlayerapp : AppCompatActivity() {
             }
         }
         backforw.setOnClickListener(){
-            var temp=starttime
-            if ((temp-backwardtime)>0){
+            starttime=mediaPlayer.currentPosition.toDouble()
+            if (starttime>=0){
                 starttime=starttime-backwardtime
+                seekbar.setProgress(starttime.toInt())
                 mediaPlayer.seekTo(starttime.toInt())
-
-        }  else{
-                Toast.makeText(this,"Can't jump Back",Toast.LENGTH_LONG).show()
             }
         }
 
@@ -107,24 +141,23 @@ class MusicPlayerapp : AppCompatActivity() {
     //Create the Runnable
     val UpdateSongTime:Runnable=object :Runnable{
         override fun run() {
-            //Update Time
-            starttime=mediaPlayer.currentPosition.toDouble()
-            val mymin=TimeUnit.MILLISECONDS.toMinutes(starttime.toLong())
-            val mysecon=TimeUnit.MILLISECONDS.toSeconds(starttime.toLong()-TimeUnit.MINUTES.toMillis(mymin))
-            mytime.setText(""+mymin+" Min "+mysecon+" Sec")
+            var mytimec =mediaPlayer.currentPosition.toLong()
+            var mymin=TimeUnit.MILLISECONDS.toMinutes(mytimec)
+            var mysec=TimeUnit.MILLISECONDS.toSeconds(mytimec-TimeUnit.MINUTES.toMillis(mymin))
 
-           /* mytime.text=""+
-                    String.format(
-                        "%d Min, %d Sec",
-                        TimeUnit.MILLISECONDS.toMinutes(starttime.toLong()),
 
-                        TimeUnit.MILLISECONDS.toSeconds(starttime.toLong()-TimeUnit.MINUTES.toSeconds(
-                            TimeUnit.MILLISECONDS.toMinutes(
-                                starttime.toLong()
-                            )
-                        ))
-                    )*/
-            seekbar.progress=starttime.toInt()
+            if (mysec<10) {
+                mytime.setText("0" + mymin + ":0" + mysec)
+            }
+            else if (mymin<10){
+                mytime.setText("0" + mymin + ":" + mysec)
+            }
+            else{
+                mytime.setText("" + mymin + ":" + mysec)
+            }
+
+
+            seekbar.progress=mytimec.toInt()
             handler.postDelayed(this,100)
         }
     }

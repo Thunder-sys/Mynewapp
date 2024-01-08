@@ -43,7 +43,7 @@ class StatusActi : AppCompatActivity() {
                 startActivity(intent)
             }
             else if (getmyv=="Music App"){
-                var intent=Intent(this,SecondMusicActivity::class.java)
+                var intent=Intent(this,MusicPlayerapp::class.java)
                 startActivity(intent)
             }
             else if (getmyv=="Video App"){
